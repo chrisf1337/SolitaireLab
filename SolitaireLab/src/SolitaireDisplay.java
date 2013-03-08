@@ -44,6 +44,8 @@ public class SolitaireDisplay extends JComponent implements MouseListener
 		drawCard(g, game.getStockCard(), SPACING, SPACING);
 
 		//stock
+		drawCard(g, game.getWasteCard(), SPACING * 6 + CARD_WIDTH, SPACING);
+		drawCard(g, game.getWasteCard(), SPACING * 4 + CARD_WIDTH, SPACING);
 		drawCard(g, game.getWasteCard(), SPACING * 2 + CARD_WIDTH, SPACING);
 		if (selectedRow == 0 && selectedCol == 1)
 			drawBorder(g, SPACING * 2 + CARD_WIDTH, SPACING);
