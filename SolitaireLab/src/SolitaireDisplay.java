@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
-public class SolitaireDisplay extends JComponent implements MouseListener
+public class SolitaireDisplay extends JComponent implements MouseListener, 
+        KeyListener
 {
 	private static final int CARD_WIDTH = 73;
 	private static final int CARD_HEIGHT = 97;
@@ -29,7 +30,8 @@ public class SolitaireDisplay extends JComponent implements MouseListener
 		        CARD_HEIGHT * 2 + SPACING * 3 + FACE_DOWN_OFFSET * 7 + 
 		        13 * FACE_UP_OFFSET));
 		this.addMouseListener(this);
-
+		this.addKeyListener(this);
+		
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -127,6 +129,23 @@ public class SolitaireDisplay extends JComponent implements MouseListener
 		else if (row == 1)
 			game.pileClicked(col);
 		repaint();
+	}
+	   
+	public void keyTyped(KeyEvent e)
+	{
+	    System.out.println("key typed");
+	    if(e.getKeyCode() == KeyEvent.VK_H)
+	        System.out.println("h pressed");
+	}
+	
+	public void keyPressed(KeyEvent e)
+	{
+	    System.out.println("key pressed");
+	}
+	
+	public void keyReleased(KeyEvent e)
+	{
+	    System.out.println("key released");
 	}
 
 	private void drawBorder(Graphics g, int x, int y)

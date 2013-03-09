@@ -153,14 +153,19 @@ public class Solitaire
 	    if(display.isWasteSelected())
 	    {
             if(canAddToFoundation(waste.peek(), index))
+            {
 	            foundations[index].push(waste.pop());
+	            display.unselect();
+            }
 	    }
         else if(display.isPileSelected())
         {
             if(canAddToFoundation(getPile(display.selectedPile()).peek(), index))
+            {
                 foundations[index].push(getPile(display.selectedPile()).pop());
+                display.unselect();
+            }
         }
-	    display.unselect();
 		System.out.println("foundation #" + index + " clicked");
 	}
 
@@ -212,7 +217,8 @@ public class Solitaire
 	            }
 	            addToPile(cards, index);
 	            addToPile(otherCards, display.selectedPile());
-	            display.selectPile(index);
+	            if(!pile.isEmpty())
+	                display.selectPile(index);
 	        }
 	    }
 	    // the waste is selected, so we determine if we can add the top waste
@@ -248,7 +254,7 @@ public class Solitaire
 	    Stack<Card> pile = getPile(index);
 	    if(pile.isEmpty() && card.getRank() == 13)
 	        return true;
-	    else if(pile.peek().isFaceUp())
+	    else if(!pile.isEmpty() && pile.peek().isFaceUp())
 	        return (pile.peek().getRank() == card.getRank() + 1 && 
 	                ((pile.peek().isRed() && !card.isRed()) || 
 	                (!pile.peek().isRed() && card.isRed())));
