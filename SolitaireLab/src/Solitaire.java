@@ -166,7 +166,21 @@ public class Solitaire
                 display.unselect();
             }
         }
+	    
+	    if(checkForWin())
+	        System.out.println("You win!");
 		System.out.println("foundation #" + index + " clicked");
+	}
+	
+	/**
+	 * Checks if all four foundations are complete on card add.
+	 * @return
+	 */
+	private boolean checkForWin() 
+	{
+	    for(Stack<Card> f: foundations)
+	        if(!(f.size() == 13)) return false;
+	    return true;
 	}
 
 	//precondition:  0 <= index < 7
@@ -204,7 +218,6 @@ public class Solitaire
 	            display.selectPile(index);
 	        }*/
 	        
-	        // FIXME
 	        if(!cards.isEmpty())
 	        {
 	            LinkedList<Card> otherCards = new LinkedList<Card>();
@@ -237,10 +250,7 @@ public class Solitaire
 	    // if nothing has been selected, select the clicked pile
 	    else if(!pile.isEmpty() && pile.peek().isFaceUp())
 	        display.selectPile(index);
-	    
-	    
-	    
-	    
+
 		System.out.println("pile #" + index + " clicked");
 	}
 	
@@ -260,6 +270,14 @@ public class Solitaire
 	                (!pile.peek().isRed() && card.isRed())));
 	    else
 	        return false;
+	}
+	
+	/**
+	 * Makes all possible moves to foundations.
+	 */
+	private void moveToFoundations()
+	{
+	    
 	}
 	
 	/** 
